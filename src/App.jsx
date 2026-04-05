@@ -123,7 +123,8 @@ function PinPad({ label, icon, iconType, hint, correctPin, onOk, onBack }) {
 
 /* ========== HOME: USER CARDS ========== */
 function UserCard({ user, onSelect }) {
-  const rem = user.slots - user.played.length;
+  const validPlayed = user.played.filter(i => i < user.slots).length;
+  const rem = user.slots - validPlayed;
   const done = rem <= 0;
   return (
     <button onClick={onSelect} style={{
@@ -149,7 +150,8 @@ function UserCard({ user, onSelect }) {
 
 /* ========== PLAYER VIEW ========== */
 function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBack, onHistory }) {
-  const myRem = user.slots - user.played.length;
+  const myValidPlayed = user.played.filter(i => i < user.slots).length;
+  const myRem = user.slots - myValidPlayed;
   const myDone = myRem <= 0;
 
   return (
@@ -182,7 +184,8 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
       }}>
         {allUsers.map(u => {
           const isMe = u.id === user.id;
-          const rem = u.slots - u.played.length;
+          const validPlayed = u.played.filter(i => i < u.slots).length;
+          const rem = u.slots - validPlayed;
           const done = rem <= 0;
           return (
             <div key={u.id} style={{
