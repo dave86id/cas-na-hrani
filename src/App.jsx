@@ -40,15 +40,15 @@ const F = "'Fredoka', sans-serif";
 const N = "'Nunito', sans-serif";
 
 const backBtn = {
-  background: "none", border: "none", fontSize: 16,
-  color: "#64748b", cursor: "pointer", marginBottom: 12, fontFamily: N,
+  background: "none", border: "none", fontSize: 21,
+  color: "#64748b", cursor: "pointer", marginBottom: 16, fontFamily: N,
 };
 const inp = {
-  padding: "10px 14px", borderRadius: 12, border: "2px solid #e2e8f0",
-  fontFamily: N, fontSize: 15, width: "100%", boxSizing: "border-box", outline: "none",
+  padding: "13px 18px", borderRadius: 16, border: "2px solid #e2e8f0",
+  fontFamily: N, fontSize: 20, width: "100%", boxSizing: "border-box", outline: "none",
 };
 const lbl = {
-  fontSize: 13, fontWeight: 700, color: "#64748b", fontFamily: N, marginBottom: 4, display: "block",
+  fontSize: 17, fontWeight: 700, color: "#64748b", fontFamily: N, marginBottom: 6, display: "block",
 };
 
 /* ---- Avatar renderer ---- */
@@ -89,28 +89,28 @@ function PinPad({ label, icon, iconType, hint, correctPin, onOk, onBack }) {
   return (
     <div style={{ textAlign: "center" }}>
       <button onClick={onBack} style={backBtn}>{"\u2190 Zp\u011bt"}</button>
-      <div style={{ marginBottom: 8 }}>
-        <Avatar src={icon} type={iconType || "emoji"} size={64} />
+      <div style={{ marginBottom: 10 }}>
+        <Avatar src={icon} type={iconType || "emoji"} size={84} />
       </div>
-      <div style={{ fontFamily: F, fontSize: 24, fontWeight: 600, color: "#1e293b", marginBottom: 4 }}>{label}</div>
-      {hint && <div style={{ fontFamily: N, fontSize: 13, color: "#94a3b8", marginBottom: 16 }}>{hint}</div>}
-      <div style={{ display: "flex", gap: 12, justifyContent: "center", marginBottom: 24 }}>
+      <div style={{ fontFamily: F, fontSize: 31, fontWeight: 600, color: "#1e293b", marginBottom: 6 }}>{label}</div>
+      {hint && <div style={{ fontFamily: N, fontSize: 17, color: "#94a3b8", marginBottom: 20 }}>{hint}</div>}
+      <div style={{ display: "flex", gap: 16, justifyContent: "center", marginBottom: 32 }}>
         {[0,1,2,3].map(i => (
           <div key={i} style={{
-            width: 20, height: 20, borderRadius: "50%",
+            width: 26, height: 26, borderRadius: "50%",
             background: i < pin.length ? (err ? "#ef4444" : "#22c55e") : "#e2e8f0",
             transition: "all 0.2s",
           }} />
         ))}
       </div>
-      {err && <div style={{ color: "#ef4444", fontSize: 14, marginBottom: 12, fontFamily: N }}>{"\u0160patn\u00fd PIN!"}</div>}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 60px)", gap: 10, justifyContent: "center" }}>
+      {err && <div style={{ color: "#ef4444", fontSize: 18, marginBottom: 16, fontFamily: N }}>{"\u0160patn\u00fd PIN!"}</div>}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 78px)", gap: 13, justifyContent: "center" }}>
         {[1,2,3,4,5,6,7,8,9,null,0,null].map((n, i) =>
           n !== null ? (
             <button key={i} onClick={() => press(String(n))} style={{
-              width: 60, height: 60, borderRadius: 16,
+              width: 78, height: 78, borderRadius: 20,
               border: "2px solid #e2e8f0", background: "white",
-              fontSize: 24, fontFamily: F, fontWeight: 600,
+              fontSize: 31, fontFamily: F, fontWeight: 600,
               cursor: "pointer", color: "#334155",
               boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
             }}>{n}</button>
@@ -131,16 +131,16 @@ function UserCard({ user, onSelect }) {
         ? "linear-gradient(135deg, #fef2f2, #fee2e2)"
         : "linear-gradient(135deg, #f0fdf4, #dcfce7)",
       border: done ? "2px solid #fca5a5" : "2px solid #86efac",
-      borderRadius: 20, padding: "20px 12px", cursor: "pointer",
+      borderRadius: 24, padding: "26px 16px", cursor: "pointer",
       textAlign: "center", minWidth: 0, flex: "1 1 0",
       transition: "all 0.2s ease",
       boxShadow: "0 4px 15px rgba(0,0,0,0.08)",
     }}>
-      <div style={{ marginBottom: 8 }}>
-        <Avatar src={user.avatar} type={user.avatarType || "emoji"} size={48} />
+      <div style={{ marginBottom: 10 }}>
+        <Avatar src={user.avatar} type={user.avatarType || "emoji"} size={62} />
       </div>
-      <div style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: "#1e293b" }}>{user.name}</div>
-      <div style={{ marginTop: 6, fontSize: 12, fontWeight: 500, color: done ? "#dc2626" : "#16a34a", fontFamily: N }}>
+      <div style={{ fontFamily: F, fontSize: 23, fontWeight: 600, color: "#1e293b" }}>{user.name}</div>
+      <div style={{ marginTop: 8, fontSize: 16, fontWeight: 500, color: done ? "#dc2626" : "#16a34a", fontFamily: N }}>
         {done ? "\u{1F6AB} Odehr\u00e1no" : "\u23F3 " + rem * 30 + " min"}
       </div>
     </button>
@@ -158,38 +158,26 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
 
       {/* Header */}
       <div style={{
-        background: "rgba(255,255,255,0.85)", borderRadius: 20,
-        padding: "14px 18px", boxShadow: "0 4px 15px rgba(0,0,0,0.06)", marginBottom: 14,
+        padding: "10px 6px", marginBottom: 18,
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {appIconType === "image"
-              ? <img src={appIcon} alt="" style={{ width: 28, height: 28, borderRadius: 6, objectFit: "cover" }} />
-              : <span style={{ fontSize: 22 }}>{appIcon}</span>
-            }
-            <span style={{ fontFamily: F, fontSize: 20, fontWeight: 700, color: "#1e293b" }}>
-              {"\u010cas na hran\u00ed"}
-            </span>
+          <div style={{
+            background: "#f1f5f9", borderRadius: 12, padding: "6px 16px",
+            fontFamily: N, fontSize: 17, fontWeight: 700, color: "#64748b",
+          }}>
+            {"t\u00fdden: " + week}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{
-              background: "#f1f5f9", borderRadius: 10, padding: "4px 12px",
-              fontFamily: N, fontSize: 13, fontWeight: 700, color: "#64748b",
-            }}>
-              {"t\u00fdden: " + week}
-            </div>
-            <button onClick={onHistory} style={{
-              background: "none", border: "none", cursor: "pointer",
-              fontFamily: N, fontSize: 13, fontWeight: 700, color: "#3b82f6",
-              padding: 0, textDecoration: "underline",
-            }}>{"historie"}</button>
-          </div>
+          <button onClick={onHistory} style={{
+            background: "none", border: "none", cursor: "pointer",
+            fontFamily: N, fontSize: 17, fontWeight: 700, color: "#3b82f6",
+            padding: 0, textDecoration: "underline",
+          }}>{"historie"}</button>
         </div>
       </div>
 
       {/* All users side by side — profile + slots in ONE box per user */}
       <div style={{
-        display: "flex", gap: 12,
+        display: "flex", gap: 16,
         overflowX: "auto", WebkitOverflowScrolling: "touch",
       }}>
         {allUsers.map(u => {
@@ -198,11 +186,11 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
           const done = rem <= 0;
           return (
             <div key={u.id} style={{
-              flex: "1 1 0", minWidth: 120,
+              flex: "1 1 0", minWidth: 156,
               background: isMe
                 ? "linear-gradient(135deg, #eff6ff, #e0f2fe)"
                 : "rgba(255,255,255,0.85)",
-              borderRadius: 20, padding: "16px 12px",
+              borderRadius: 24, padding: "20px 16px",
               border: isMe ? "2px solid #93c5fd" : "2px solid #f1f5f9",
               boxShadow: "0 4px 15px rgba(0,0,0,0.06)",
               overflow: "hidden",
@@ -211,31 +199,31 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
             }}>
               {isMe && (
                 <div style={{
-                  position: "absolute", top: 8, right: 8,
-                  background: "#3b82f6", color: "white", fontSize: 10,
-                  fontFamily: N, fontWeight: 800, padding: "2px 8px", borderRadius: 8,
+                  position: "absolute", top: 10, right: 10,
+                  background: "#3b82f6", color: "white", fontSize: 13,
+                  fontFamily: N, fontWeight: 800, padding: "3px 10px", borderRadius: 10,
                 }}>TY</div>
               )}
 
               {/* Profile section */}
-              <Avatar src={u.avatar} type={u.avatarType || "emoji"} size={40} />
-              <div style={{ fontFamily: F, fontSize: 16, fontWeight: 600, color: "#1e293b", marginTop: 6 }}>
+              <Avatar src={u.avatar} type={u.avatarType || "emoji"} size={52} />
+              <div style={{ fontFamily: F, fontSize: 21, fontWeight: 600, color: "#1e293b", marginTop: 8 }}>
                 {u.name}
               </div>
               <div style={{
-                fontSize: 12, fontFamily: N, fontWeight: 700, marginTop: 2, marginBottom: 12,
+                fontSize: 16, fontFamily: N, fontWeight: 700, marginTop: 3, marginBottom: 16,
                 color: done ? "#dc2626" : "#16a34a",
               }}>
                 {done ? "\u{1F6AB} 0 min" : "\u23F3 " + rem * 30 + " min"}
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: isMe ? "#bfdbfe" : "#e2e8f0", marginBottom: 12 }} />
+              <div style={{ height: 1, background: isMe ? "#bfdbfe" : "#e2e8f0", marginBottom: 16 }} />
 
               {/* Slot grid */}
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(2, 28px)",
-                gap: 5, justifyContent: "center",
+                display: "grid", gridTemplateColumns: "repeat(2, 36px)",
+                gap: 7, justifyContent: "center",
               }}>
                 {Array.from({ length: u.slots }, (_, i) => {
                   const played = u.played.includes(i);
@@ -244,7 +232,7 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
                       onClick={() => isMe && onToggle(i)}
                       disabled={!isMe}
                       style={{
-                        width: 28, height: 28, borderRadius: 7,
+                        width: 36, height: 36, borderRadius: 9,
                         border: played ? "2px solid #4ade80"
                           : isMe ? "2px dashed #93c5fd" : "2px dashed #d1d5db",
                         background: played
@@ -252,7 +240,7 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
                           : isMe ? "rgba(255,255,255,0.9)" : "rgba(241,245,249,0.8)",
                         cursor: isMe ? "pointer" : "default",
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 12, fontWeight: 700, color: "white",
+                        fontSize: 16, fontWeight: 700, color: "white",
                         transition: "all 0.15s ease",
                         boxShadow: played ? "0 1px 4px rgba(34,197,94,0.25)" : "none",
                         opacity: !isMe && !played ? 0.5 : 1,
@@ -270,15 +258,15 @@ function PlayerView({ user, allUsers, week, appIcon, appIconType, onToggle, onBa
       </div>
 
       {/* Help text */}
-      <div style={{ textAlign: "center", marginTop: 10, fontSize: 11, color: "#94a3b8", fontFamily: N }}>
+      <div style={{ textAlign: "center", marginTop: 14, fontSize: 14, color: "#94a3b8", fontFamily: N }}>
         {"Klikni na sv\u016fj slot = 30 minut odehr\u00e1no"}
       </div>
 
       {myDone && (
         <div style={{
-          marginTop: 14, padding: 14, borderRadius: 14,
+          marginTop: 18, padding: 18, borderRadius: 18,
           background: "linear-gradient(135deg, #fef2f2, #fee2e2)",
-          textAlign: "center", fontFamily: N, fontSize: 14, color: "#991b1b", fontWeight: 600,
+          textAlign: "center", fontFamily: N, fontSize: 18, color: "#991b1b", fontWeight: 600,
         }}>
           {"\u{1F3AE} V\u0161echny tv\u00e9 sloty odehr\u00e1ny! Nov\u00e9 v ned\u011bli ve 20:00."}
         </div>
@@ -302,20 +290,20 @@ function AvatarPicker({ current, currentType, onSelect }) {
     <div>
       <label style={lbl}>Avatar</label>
       {/* Current preview */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-        <Avatar src={current} type={currentType || "emoji"} size={48} />
-        <span style={{ fontSize: 12, color: "#94a3b8", fontFamily: N }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 13, marginBottom: 10 }}>
+        <Avatar src={current} type={currentType || "emoji"} size={62} />
+        <span style={{ fontSize: 16, color: "#94a3b8", fontFamily: N }}>
           {currentType === "image" ? "Vlastn\u00ed obr\u00e1zek" : "Emoji"}
         </span>
       </div>
       {/* Emoji grid */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 8 }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 10 }}>
         {AVATARS.map(a => (
           <button key={a} onClick={() => onSelect(a, "emoji")} style={{
-            width: 34, height: 34, borderRadius: 9,
+            width: 44, height: 44, borderRadius: 12,
             border: currentType === "emoji" && a === current ? "2px solid #3b82f6" : "2px solid #e2e8f0",
             background: currentType === "emoji" && a === current ? "#eff6ff" : "white",
-            fontSize: 18, cursor: "pointer", padding: 0,
+            fontSize: 23, cursor: "pointer", padding: 0,
           }}>{a}</button>
         ))}
       </div>
@@ -323,9 +311,9 @@ function AvatarPicker({ current, currentType, onSelect }) {
       <input ref={fileRef} type="file" accept="image/png,image/jpeg,image/webp"
         style={{ display: "none" }} onChange={handleFile} />
       <button onClick={() => fileRef.current?.click()} style={{
-        padding: "8px 14px", borderRadius: 10,
+        padding: "10px 18px", borderRadius: 13,
         border: "2px dashed #cbd5e1", background: "white",
-        cursor: "pointer", fontFamily: N, fontSize: 13, fontWeight: 600, color: "#64748b",
+        cursor: "pointer", fontFamily: N, fontSize: 17, fontWeight: 600, color: "#64748b",
         width: "100%",
       }}>
         {"\u{1F4F7} Nahr\u00e1t vlastn\u00ed obr\u00e1zek"}
@@ -378,45 +366,45 @@ function AdminPanel({ state, setState, onBack }) {
   return (
     <div>
       <button onClick={onBack} style={backBtn}>{"\u2190 Zp\u011bt"}</button>
-      <h2 style={{ fontFamily: F, fontSize: 24, fontWeight: 700, color: "#1e293b", marginBottom: 20 }}>
+      <h2 style={{ fontFamily: F, fontSize: 31, fontWeight: 700, color: "#1e293b", marginBottom: 26 }}>
         {"\u{1F527} Admin Panel"}
       </h2>
 
       {/* App icon settings */}
       <div style={{
-        background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: 16,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.06)", marginBottom: 16,
+        background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: 20,
+        boxShadow: "0 2px 8px rgba(0,0,0,0.06)", marginBottom: 20,
       }}>
         <button onClick={() => setShowAppIcon(!showAppIcon)} style={{
           background: "none", border: "none", cursor: "pointer",
-          fontFamily: N, fontSize: 15, fontWeight: 700, color: "#475569",
-          display: "flex", alignItems: "center", gap: 8, width: "100%",
+          fontFamily: N, fontSize: 20, fontWeight: 700, color: "#475569",
+          display: "flex", alignItems: "center", gap: 10, width: "100%",
           padding: 0,
         }}>
           {state.appIconType === "image"
-            ? <img src={state.appIcon} alt="" style={{ width: 28, height: 28, borderRadius: 6, objectFit: "cover" }} />
-            : <span style={{ fontSize: 22 }}>{state.appIcon}</span>
+            ? <img src={state.appIcon} alt="" style={{ width: 36, height: 36, borderRadius: 8, objectFit: "cover" }} />
+            : <span style={{ fontSize: 28 }}>{state.appIcon}</span>
           }
           {"Ikona aplikace " + (showAppIcon ? "\u25B2" : "\u25BC")}
         </button>
         {showAppIcon && (
-          <div style={{ marginTop: 12 }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 8 }}>
+          <div style={{ marginTop: 16 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 10 }}>
               {APP_ICONS.map(ic => (
                 <button key={ic} onClick={() => setState(p => ({ ...p, appIcon: ic, appIconType: "emoji" }))} style={{
-                  width: 40, height: 40, borderRadius: 10,
+                  width: 52, height: 52, borderRadius: 13,
                   border: state.appIconType === "emoji" && state.appIcon === ic ? "2px solid #3b82f6" : "2px solid #e2e8f0",
                   background: state.appIconType === "emoji" && state.appIcon === ic ? "#eff6ff" : "white",
-                  fontSize: 22, cursor: "pointer", padding: 0,
+                  fontSize: 28, cursor: "pointer", padding: 0,
                 }}>{ic}</button>
               ))}
             </div>
             <input ref={appIconFileRef} type="file" accept="image/png,image/jpeg,image/webp"
               style={{ display: "none" }} onChange={handleAppIconFile} />
             <button onClick={() => appIconFileRef.current?.click()} style={{
-              padding: "8px 14px", borderRadius: 10,
+              padding: "10px 18px", borderRadius: 13,
               border: "2px dashed #cbd5e1", background: "white",
-              cursor: "pointer", fontFamily: N, fontSize: 13, fontWeight: 600, color: "#64748b",
+              cursor: "pointer", fontFamily: N, fontSize: 17, fontWeight: 600, color: "#64748b",
               width: "100%",
             }}>
               {"\u{1F4F7} Nahr\u00e1t vlastn\u00ed ikonu"}
@@ -426,14 +414,14 @@ function AdminPanel({ state, setState, onBack }) {
       </div>
 
       {/* User list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 24 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 32 }}>
         {state.users.map(u => (
           <div key={u.id} style={{
-            background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: 16,
+            background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: 20,
             boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
           }}>
             {editId === u.id ? (
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
                 <div>
                   <label style={lbl}>{"Jm\u00e9no"}</label>
                   <input style={inp} value={u.name} onChange={e => upd(u.id, { name: e.target.value })} />
@@ -450,31 +438,31 @@ function AdminPanel({ state, setState, onBack }) {
                 </div>
                 <AvatarPicker current={u.avatar} currentType={u.avatarType}
                   onSelect={(val, type) => upd(u.id, { avatar: val, avatarType: type })} />
-                <div style={{ display: "flex", gap: 8 }}>
+                <div style={{ display: "flex", gap: 10 }}>
                   <button onClick={() => setEditId(null)} style={{
-                    flex: 1, padding: 10, borderRadius: 12, border: "none",
+                    flex: 1, padding: 13, borderRadius: 16, border: "none",
                     background: "#3b82f6", color: "white", fontFamily: N,
-                    fontWeight: 700, cursor: "pointer", fontSize: 14,
+                    fontWeight: 700, cursor: "pointer", fontSize: 18,
                   }}>{"\u2713 Hotovo"}</button>
                   <button onClick={() => del(u.id)} style={{
-                    padding: "10px 16px", borderRadius: 12, border: "none",
+                    padding: "13px 20px", borderRadius: 16, border: "none",
                     background: "#fee2e2", color: "#dc2626", fontFamily: N,
-                    fontWeight: 700, cursor: "pointer", fontSize: 14,
+                    fontWeight: 700, cursor: "pointer", fontSize: 18,
                   }}>{"\u{1F5D1}"}</button>
                 </div>
               </div>
             ) : (
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <Avatar src={u.avatar} type={u.avatarType || "emoji"} size={40} />
+              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <Avatar src={u.avatar} type={u.avatarType || "emoji"} size={52} />
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: F, fontSize: 18, fontWeight: 600, color: "#1e293b" }}>{u.name}</div>
-                  <div style={{ fontSize: 13, color: "#94a3b8", fontFamily: N }}>
+                  <div style={{ fontFamily: F, fontSize: 23, fontWeight: 600, color: "#1e293b" }}>{u.name}</div>
+                  <div style={{ fontSize: 17, color: "#94a3b8", fontFamily: N }}>
                     {"PIN: " + u.pin + " \u00b7 " + u.slots + " slot\u016f \u00b7 Odehr\u00e1no: " + u.played.length}
                   </div>
                 </div>
                 <button onClick={() => setEditId(u.id)} style={{
-                  padding: "8px 14px", borderRadius: 10, border: "2px solid #e2e8f0",
-                  background: "white", cursor: "pointer", fontSize: 14,
+                  padding: "10px 18px", borderRadius: 13, border: "2px solid #e2e8f0",
+                  background: "white", cursor: "pointer", fontSize: 18,
                   fontFamily: N, fontWeight: 600,
                 }}>{"\u270f\ufe0f"}</button>
               </div>
@@ -486,13 +474,13 @@ function AdminPanel({ state, setState, onBack }) {
       {/* Add user */}
       {showAdd ? (
         <div style={{
-          background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: 16,
-          boxShadow: "0 2px 8px rgba(0,0,0,0.06)", marginBottom: 24,
+          background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: 20,
+          boxShadow: "0 2px 8px rgba(0,0,0,0.06)", marginBottom: 32,
         }}>
-          <h3 style={{ fontFamily: F, fontSize: 18, color: "#1e293b", marginBottom: 12 }}>
+          <h3 style={{ fontFamily: F, fontSize: 23, color: "#1e293b", marginBottom: 16 }}>
             {"Nov\u00fd u\u017eivatel"}
           </h3>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
             <div>
               <label style={lbl}>{"Jm\u00e9no"}</label>
               <input style={inp} value={addName} onChange={e => setAddName(e.target.value)}
@@ -511,48 +499,48 @@ function AdminPanel({ state, setState, onBack }) {
             </div>
             <AvatarPicker current={addAvatar} currentType={addAvatarType}
               onSelect={(val, type) => { setAddAvatar(val); setAddAvatarType(type); }} />
-            <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", gap: 10 }}>
               <button onClick={add} style={{
-                flex: 1, padding: 12, borderRadius: 12, border: "none",
+                flex: 1, padding: 16, borderRadius: 16, border: "none",
                 background: "#22c55e", color: "white", fontFamily: N,
-                fontWeight: 700, cursor: "pointer", fontSize: 15,
+                fontWeight: 700, cursor: "pointer", fontSize: 20,
               }}>{"+ P\u0159idat"}</button>
               <button onClick={() => setShowAdd(false)} style={{
-                padding: "12px 20px", borderRadius: 12, border: "2px solid #e2e8f0",
+                padding: "16px 26px", borderRadius: 16, border: "2px solid #e2e8f0",
                 background: "white", fontFamily: N, fontWeight: 600,
-                cursor: "pointer", fontSize: 14, color: "#64748b",
+                cursor: "pointer", fontSize: 18, color: "#64748b",
               }}>{"Zru\u0161it"}</button>
             </div>
           </div>
         </div>
       ) : (
         <button onClick={() => setShowAdd(true)} style={{
-          width: "100%", padding: 14, borderRadius: 14, border: "2px dashed #cbd5e1",
+          width: "100%", padding: 18, borderRadius: 18, border: "2px dashed #cbd5e1",
           background: "transparent", cursor: "pointer", fontFamily: N,
-          fontSize: 15, fontWeight: 700, color: "#64748b", marginBottom: 24,
+          fontSize: 20, fontWeight: 700, color: "#64748b", marginBottom: 32,
         }}>{"+ P\u0159idat u\u017eivatele"}</button>
       )}
 
       {/* Archive */}
       <button onClick={() => setShowArchive(!showArchive)} style={{
-        width: "100%", padding: 14, borderRadius: 14, border: "none",
+        width: "100%", padding: 18, borderRadius: 18, border: "none",
         background: "rgba(255,255,255,0.6)", cursor: "pointer", fontFamily: N,
-        fontSize: 15, fontWeight: 700, color: "#64748b",
+        fontSize: 20, fontWeight: 700, color: "#64748b",
       }}>
         {"\u{1F4E6} Archiv " + (showArchive ? "\u25B2" : "\u25BC")}
       </button>
       {showArchive && (
-        <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
           {state.archive.length === 0 ? (
-            <div style={{ textAlign: "center", color: "#94a3b8", fontFamily: N, padding: 20 }}>
+            <div style={{ textAlign: "center", color: "#94a3b8", fontFamily: N, padding: 26, fontSize: 17 }}>
               {"Zat\u00edm \u017e\u00e1dn\u00e9 z\u00e1znamy"}
             </div>
           ) : state.archive.slice().reverse().map((entry, i) => (
             <div key={i} style={{
-              background: "rgba(255,255,255,0.7)", borderRadius: 12, padding: 14,
-              fontSize: 14, fontFamily: N,
+              background: "rgba(255,255,255,0.7)", borderRadius: 16, padding: 18,
+              fontSize: 18, fontFamily: N,
             }}>
-              <div style={{ fontWeight: 700, color: "#475569", marginBottom: 6 }}>
+              <div style={{ fontWeight: 700, color: "#475569", marginBottom: 8 }}>
                 {"T\u00fdden " + entry.week + " / " + entry.year}
               </div>
               {entry.users.map((u, j) => (
@@ -573,63 +561,63 @@ function HistoryView({ archive, onBack }) {
   return (
     <div>
       <button onClick={onBack} style={backBtn}>{"\u2190 Zp\u011bt"}</button>
-      <h2 style={{ fontFamily: F, fontSize: 24, fontWeight: 700, color: "#1e293b", marginBottom: 20 }}>
+      <h2 style={{ fontFamily: F, fontSize: 31, fontWeight: 700, color: "#1e293b", marginBottom: 26 }}>
         {"\u{1F4C5} Historie"}
       </h2>
       {archive.length === 0 ? (
         <div style={{
-          background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: 30,
-          textAlign: "center", color: "#94a3b8", fontFamily: N, fontSize: 15,
+          background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: 40,
+          textAlign: "center", color: "#94a3b8", fontFamily: N, fontSize: 20,
           boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
         }}>
           {"Zat\u00edm \u017e\u00e1dn\u00e9 z\u00e1znamy. Historie se zapln\u00ed po prvn\u00edm t\u00fddenn\u00edm resetu."}
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {archive.slice().reverse().map((entry, i) => (
             <div key={i} style={{
-              background: "rgba(255,255,255,0.85)", borderRadius: 16, padding: 16,
+              background: "rgba(255,255,255,0.85)", borderRadius: 20, padding: 20,
               boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
             }}>
               <div style={{
-                fontFamily: F, fontSize: 16, fontWeight: 700, color: "#1e293b", marginBottom: 10,
+                fontFamily: F, fontSize: 21, fontWeight: 700, color: "#1e293b", marginBottom: 13,
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 <span>{"T\u00fdden " + entry.week}</span>
                 <span style={{
-                  background: "#f1f5f9", borderRadius: 8, padding: "2px 10px",
-                  fontFamily: N, fontSize: 12, fontWeight: 600, color: "#94a3b8",
+                  background: "#f1f5f9", borderRadius: 10, padding: "3px 13px",
+                  fontFamily: N, fontSize: 16, fontWeight: 600, color: "#94a3b8",
                 }}>{entry.year}</span>
               </div>
               {entry.users.map((u, j) => {
                 const pct = u.slots > 0 ? Math.round((u.played.length / u.slots) * 100) : 0;
                 return (
                   <div key={j} style={{
-                    display: "flex", alignItems: "center", gap: 10,
-                    padding: "8px 0",
+                    display: "flex", alignItems: "center", gap: 13,
+                    padding: "10px 0",
                     borderTop: j > 0 ? "1px solid #f1f5f9" : "none",
                   }}>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: N, fontSize: 14, fontWeight: 700, color: "#334155" }}>
+                      <div style={{ fontFamily: N, fontSize: 18, fontWeight: 700, color: "#334155" }}>
                         {u.name}
                       </div>
-                      <div style={{ fontFamily: N, fontSize: 12, color: "#94a3b8" }}>
+                      <div style={{ fontFamily: N, fontSize: 16, color: "#94a3b8" }}>
                         {u.played.length + "/" + u.slots + " slot\u016f \u00b7 " + u.played.length * 30 + " min"}
                       </div>
                     </div>
                     {/* Progress bar */}
                     <div style={{
-                      width: 80, height: 8, borderRadius: 4,
+                      width: 104, height: 10, borderRadius: 5,
                       background: "#e2e8f0", overflow: "hidden",
                     }}>
                       <div style={{
-                        width: pct + "%", height: "100%", borderRadius: 4,
+                        width: pct + "%", height: "100%", borderRadius: 5,
                         background: pct >= 100
                           ? "linear-gradient(90deg, #ef4444, #f87171)"
                           : "linear-gradient(90deg, #22c55e, #4ade80)",
                       }} />
                     </div>
-                    <div style={{ fontFamily: N, fontSize: 11, fontWeight: 700, color: "#94a3b8", minWidth: 32, textAlign: "right" }}>
+                    <div style={{ fontFamily: N, fontSize: 14, fontWeight: 700, color: "#94a3b8", minWidth: 42, textAlign: "right" }}>
                       {pct + "%"}
                     </div>
                   </div>
@@ -688,31 +676,29 @@ export default function App() {
     <div style={{
       minHeight: "100vh",
       background: "linear-gradient(160deg, #e0f2fe 0%, #f0fdf4 35%, #fefce8 70%, #fce7f3 100%)",
-      padding: "20px 16px", fontFamily: N,
+      padding: "26px 20px", fontFamily: N,
     }}>
-      <div style={{ maxWidth: 700, margin: "0 auto" }}>
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
         {/* Global header */}
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <div style={{ marginBottom: 4 }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ marginBottom: 6 }}>
             {state.appIconType === "image"
-              ? <img src={state.appIcon} alt="" style={{ width: 48, height: 48, borderRadius: 10, objectFit: "cover", display: "block", margin: "0 auto" }} />
-              : <span style={{ fontSize: 36 }}>{state.appIcon}</span>
+              ? <img src={state.appIcon} alt="" style={{ width: 62, height: 62, borderRadius: 13, objectFit: "cover", display: "block", margin: "0 auto" }} />
+              : <span style={{ fontSize: 47 }}>{state.appIcon}</span>
             }
           </div>
           <h1 style={{
-            fontFamily: F, fontSize: 28, fontWeight: 700,
+            fontFamily: F, fontSize: 36, fontWeight: 700,
             background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0,
           }}>{"\u010cas na hran\u00ed"}</h1>
-          <div style={{ fontSize: 13, color: "#94a3b8", fontWeight: 600, marginTop: 4 }}>
-            {"T\u00fdden " + state.week + " \u00b7 " + state.year}
-          </div>
+
         </div>
 
         {screen === "home" && (
           <>
             <div style={{
-              display: "flex", gap: 12, marginBottom: 24,
+              display: "flex", gap: 16, marginBottom: 32,
               overflowX: "auto", WebkitOverflowScrolling: "touch",
             }}>
               {state.users.map(u => (
@@ -720,9 +706,9 @@ export default function App() {
               ))}
             </div>
             <button onClick={() => setScreen("adminPin")} style={{
-              width: "100%", padding: 14, borderRadius: 14,
+              width: "100%", padding: 18, borderRadius: 18,
               border: "2px solid #e2e8f0", background: "rgba(255,255,255,0.5)",
-              cursor: "pointer", fontFamily: N, fontSize: 14, fontWeight: 700, color: "#94a3b8",
+              cursor: "pointer", fontFamily: N, fontSize: 18, fontWeight: 700, color: "#94a3b8",
             }}>{"\u{1F527} Nastaven\u00ed (rodi\u010d)"}</button>
           </>
         )}
